@@ -1,0 +1,2 @@
+class BroughtGamesController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class GameMechanicsController < ApplicationController
+end
