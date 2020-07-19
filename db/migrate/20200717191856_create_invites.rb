@@ -3,7 +3,7 @@ class CreateInvites < ActiveRecord::Migration[6.0]
     create_table :invites do |t|
       t.belongs_to :user, null: false, foreign_key: true
       t.belongs_to :post, null: false, foreign_key: true
-      t.boolean :status, null: false, default: false
+      t.boolean :status
 
       t.timestamps
     end

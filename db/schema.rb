@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_07_17_192454) do
 
   create_table "boardgames", force: :cascade do |t|
     t.integer "BGGid"
-    t.string "name"
+    t.string "title"
     t.string "description"
     t.string "thumbnail"
     t.string "image"
