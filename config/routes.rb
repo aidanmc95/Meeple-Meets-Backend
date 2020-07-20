@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # resources :game_mechanics
   resources :invites
   # resources :brought_games
-  resources :posts
+  resources :meets
   # resources :game_designers
   # resources :game_publishers
   resources :designers

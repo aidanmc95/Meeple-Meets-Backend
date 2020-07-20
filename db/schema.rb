@@ -24,17 +24,18 @@ ActiveRecord::Schema.define(version: 2020_07_17_192454) do
     t.string "playtime"
     t.string "minplayers"
     t.string "maxplayers"
+    t.string "BGGrating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "brought_games", force: :cascade do |t|
     t.bigint "boardgame_id", null: false
-    t.bigint "post_id", null: false
+    t.bigint "meet_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["boardgame_id"], name: "index_brought_games_on_boardgame_id"
-    t.index ["post_id"], name: "index_brought_games_on_post_id"
+    t.index ["meet_id"], name: "index_brought_games_on_meet_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -93,11 +94,11 @@ ActiveRecord::Schema.define(version: 2020_07_17_192454) do
 
   create_table "invites", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "post_id", null: false
-    t.boolean "status", default: false, null: false
+    t.bigint "meet_id", null: false
+    t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_invites_on_post_id"
+    t.index ["meet_id"], name: "index_invites_on_meet_id"
     t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
@@ -105,6 +106,16 @@ ActiveRecord::Schema.define(version: 2020_07_17_192454) do
     t.string "mechanic"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "meets", force: :cascade do |t|
+    t.string "description"
+    t.string "location"
+    t.string "size"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_meets_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -116,22 +127,12 @@ ActiveRecord::Schema.define(version: 2020_07_17_192454) do
   end
 
   create_table "my_games", force: :cascade do |t|
-    t.bigint "boardgames_id", null: false
+    t.bigint "boardgame_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["boardgames_id"], name: "index_my_games_on_boardgames_id"
+    t.index ["boardgame_id"], name: "index_my_games_on_boardgame_id"
     t.index ["user_id"], name: "index_my_games_on_user_id"
-  end
-
-  create_table "posts", force: :cascade do |t|
-    t.string "description"
-    t.string "location"
-    t.string "size"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "publishers", force: :cascade do |t|
@@ -141,12 +142,12 @@ ActiveRecord::Schema.define(version: 2020_07_17_192454) do
   end
 
   create_table "ratings", force: :cascade do |t|
-    t.bigint "boardgames_id", null: false
+    t.bigint "boardgame_id", null: false
     t.bigint "user_id", null: false
     t.integer "rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["boardgames_id"], name: "index_ratings_on_boardgames_id"
+    t.index ["boardgame_id"], name: "index_ratings_on_boardgame_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
@@ -158,7 +159,7 @@ ActiveRecord::Schema.define(version: 2020_07_17_192454) do
   end
 
   add_foreign_key "brought_games", "boardgames"
-  add_foreign_key "brought_games", "posts"
+  add_foreign_key "brought_games", "meets"
   add_foreign_key "game_categories", "boardgames"
   add_foreign_key "game_categories", "categories"
   add_foreign_key "game_designers", "boardgames"
@@ -167,12 +168,12 @@ ActiveRecord::Schema.define(version: 2020_07_17_192454) do
   add_foreign_key "game_mechanics", "mechanics"
   add_foreign_key "game_publishers", "boardgames"
   add_foreign_key "game_publishers", "publishers"
-  add_foreign_key "invites", "posts"
+  add_foreign_key "invites", "meets"
   add_foreign_key "invites", "users"
+  add_foreign_key "meets", "users"
   add_foreign_key "messages", "conversations"
-  add_foreign_key "my_games", "boardgames", column: "boardgames_id"
+  add_foreign_key "my_games", "boardgames"
   add_foreign_key "my_games", "users"
-  add_foreign_key "posts", "users"
-  add_foreign_key "ratings", "boardgames", column: "boardgames_id"
+  add_foreign_key "ratings", "boardgames"
   add_foreign_key "ratings", "users"
 end

@@ -1,7 +1,7 @@
-class PostsController < ApplicationController
+class MeetsController < ApplicationController
     def index
-        posts = User.all
-        render json: posts.to_json()
+        meets = User.all
+        render json: meets.to_json()
     end
     
     def show

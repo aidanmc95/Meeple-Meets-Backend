@@ -1,5 +1,5 @@
-class Post < ApplicationRecord
-    belongs_to :user, as: :creator
+class Meet < ApplicationRecord
+    belongs_to :user
 
     has_many :invites
     has_many :users, through: :invites

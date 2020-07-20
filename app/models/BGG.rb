@@ -72,10 +72,31 @@ class BGG
         return output
     end
 
-    def self.addLibrary(gameid)
-        gameinfo = getGame(gameid)
-        # add game to database
-        # sleep 2
+    def self.addBoardgame(gameid)
+        if !Boardgame.find_by(BGGid: gameid) 
+            gameinfo = BGG.getGame(gameid)
+    
+            boardgame = Boardgame.create(BGGid: gameid, title: gameinfo[:name], description: gameinfo[:descrition], thumbnail: gameinfo[:thumbnail], image: gameinfo[:image], playtime: gameinfo[:playtime], minplayers: gameinfo[:minplayers], maxplayers: gameinfo[:maxplayers], BGGrating: gameinfo[:bggrating])
+    
+            gameinfo[:category].each do |category|
+                current = Category.find_or_create_by(category: category)
+                GameCategory.create(boardgame: boardgame, category: current)
+            end
+            gameinfo[:mechanic].each do |mechanic|
+                current = Mechanic.find_or_create_by(mechanic: mechanic)
+                GameMechanic.create(boardgame: boardgame, mechanic: current)
+            end
+            gameinfo[:designer].each do |designer|
+                current = Designer.find_or_create_by(name: designer)
+                GameDesigner.create(boardgame: boardgame, designer: current)
+            end
+            gameinfo[:publisher].each do |publisher|
+                current = Publisher.find_or_create_by(name: publisher)
+                GamePublisher.create(boardgame: boardgame, publisher: current)
+            end
+
+            sleep 2
+        end
     end
 
     def self.searchBGG(title)

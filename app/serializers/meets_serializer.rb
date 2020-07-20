@@ -1,4 +1,4 @@
-class PostsSerializer < ActiveModel::Serializer
+class MeetsSerializer < ActiveModel::Serializer
   attributes :id
 
   belongs_to :creator
