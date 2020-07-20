@@ -1,27 +1,27 @@
 class BoardgamesController < ApplicationController
     def index
-        boardgames = BoardGame.all
-        render json: boardgames.to_json()
+        boardgames = Boardgame.all
+        render json: boardgames, each_serializer: SimpleBoardgameSerializer
     end
     
     def show
-        boardgame = BoardGame.find(params[:id])
-        render json: BoardgameSerializer.new(boardgame)
+        boardgame = Boardgame.find(params[:id])
+        render json: boardgame
     end
 
     def create
-        boardgame = BoardGame.create(boardgame_params)
+        boardgame = Boardgame.create(boardgame_params)
         render json: BoardgameSerializer.new(boardgame)
     end
 
     def edit
-        boardgame = BoardGame.find(params[:id])
+        boardgame = Boardgame.find(params[:id])
         boardgame.update(boardgame_params)
         render json: BoardgameSerializer.new(boardgame)
     end
 
     def destroy
-        boardgame = BoardGame.find(params[:id])
+        boardgame = Boardgame.find(params[:id])
         boardgame.destroy
         render json: {info: "Deleted"}
     end

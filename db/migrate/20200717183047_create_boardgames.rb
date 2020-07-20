@@ -10,6 +10,7 @@ class CreateBoardgames < ActiveRecord::Migration[6.0]
       t.string :minplayers
       t.string :maxplayers
       t.string :BGGrating
+      t.string :BGGrank
 
       t.timestamps
     end

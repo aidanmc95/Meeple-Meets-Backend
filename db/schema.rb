@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_07_17_192454) do
     t.string "minplayers"
     t.string "maxplayers"
     t.string "BGGrating"
+    t.string "BGGrank"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

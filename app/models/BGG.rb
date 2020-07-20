@@ -21,7 +21,7 @@ class BGG
     def self.getGame(gameid)
         output = {BGGid: gameid, category:[], mechanic:[], publisher:[], designer:[]}
     
-        url = "https://www.boardgamegeek.com/xmlapi2/thing?id=#{gameid}"
+        url = "https://www.boardgamegeek.com/xmlapi2/thing?stats=1&id=#{gameid}"
         response = RestClient.get(url)
         doc = Nokogiri::XML(response) do |config|
             config.strict.noblanks
@@ -44,7 +44,13 @@ class BGG
                 output[:designer].push(thing.attribute("value").to_s)
             end
         end
-        
+
+        doc.css("rank").each do |thing|
+            if thing.attribute("friendlyname").to_s == "Board Game Rank"
+                output[:bggrank] = thing.attribute("value").to_s
+            end
+        end
+
         output[:bggrating] = doc.css("average").attribute("value").to_s
         output[:descrition] = doc.css("description").children.to_s
         output[:thumbnail] = doc.css("thumbnail").children.to_s
@@ -76,7 +82,7 @@ class BGG
         if !Boardgame.find_by(BGGid: gameid) 
             gameinfo = BGG.getGame(gameid)
     
-            boardgame = Boardgame.create(BGGid: gameid, title: gameinfo[:name], description: gameinfo[:descrition], thumbnail: gameinfo[:thumbnail], image: gameinfo[:image], playtime: gameinfo[:playtime], minplayers: gameinfo[:minplayers], maxplayers: gameinfo[:maxplayers], BGGrating: gameinfo[:bggrating])
+            boardgame = Boardgame.create(BGGid: gameid, title: gameinfo[:name], description: gameinfo[:descrition], thumbnail: gameinfo[:thumbnail], image: gameinfo[:image], playtime: gameinfo[:playtime], minplayers: gameinfo[:minplayers], maxplayers: gameinfo[:maxplayers], BGGrating: gameinfo[:bggrating], BGGrank: gameinfo[:bggrank])
     
             gameinfo[:category].each do |category|
                 current = Category.find_or_create_by(category: category)
