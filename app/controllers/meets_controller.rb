@@ -1,17 +1,17 @@
 class MeetsController < ApplicationController
     def index
-        meets = User.all
-        render json: meets.to_json()
+        meets = Meet.all
+        render json: meets, each_serializer: MeetsSerializer
     end
     
     def show
-        user = User.find(params[:id])
-        render json: UserSerializer.new(user)
+        meet = Meet.find(params[:id])
+        render json: meet, serializer: MeetsSerializer
     end
 
     def create
         user = User.create(user_params)
-        render json: UserSerializer.new(user)
+        render json: MeetsSerializer.new(user)
     end
 
     def edit

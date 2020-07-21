@@ -46,8 +46,8 @@ MyGame.create(user: user2, boardgame: boardgame1)
 MyGame.create(user: user3, boardgame: boardgame1)
 MyGame.create(user: user4, boardgame: boardgame1)
 
-meet1 = Meet.create(user: user1, description: "description", location:"location", size: "size")
-meet2 = Meet.create(user: user2, description: "description", location:"location", size: "size")
+meet1 = Meet.create(user: user1, description: "description", location:"location", size: "size", name:"Just hangin' out", when:DateTime.strptime("2007-11-19T08:37", "%FT%R"))
+meet2 = Meet.create(user: user2, description: "description", location:"location", size: "size", name: "Meeting new bgg’ers", when:DateTime.strptime("2007-11-19T08:37", "%FT%R"))
 
 Invite.create(meet: meet1, user: user2, status: true)
 Invite.create(meet: meet1, user: user3, status: true)

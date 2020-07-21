@@ -4,6 +4,8 @@ class CreateMeets < ActiveRecord::Migration[6.0]
       t.string :description
       t.string :location
       t.string :size
+      t.string :name
+      t.datetime :when
       t.belongs_to :user, null: false, foreign_key: true
 
       t.timestamps

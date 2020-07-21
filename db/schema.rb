@@ -113,6 +113,8 @@ ActiveRecord::Schema.define(version: 2020_07_17_192454) do
     t.string "description"
     t.string "location"
     t.string "size"
+    t.string "name"
+    t.datetime "when"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

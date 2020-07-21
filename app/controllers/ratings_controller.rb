@@ -1,7 +1,7 @@
 class RatingsController < ApplicationController
     def index
-        raatings = Rating.all
-        render json: raatings.to_json()
+        ratings = Rating.all
+        render json: ratings.to_json()
     end
     
     def show
