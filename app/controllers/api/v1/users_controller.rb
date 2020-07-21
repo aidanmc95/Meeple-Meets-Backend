@@ -1,4 +1,13 @@
 class Api::V1::UsersController < ApplicationController
+    def show
+        user = User.find(params[:id])
+        if user
+            render json: user, serializer: SimpleUserSerializer
+          else
+            render json: {error: 'That user could not be found'}, status: 401
+          end
+    end
+
     def create
         @user = User.create(user_params)
         if @user.valid?

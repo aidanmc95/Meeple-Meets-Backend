@@ -11,4 +11,13 @@ class MeetsSerializer < ActiveModel::Serializer
   class BoardgameSerializer < ActiveModel::Serializer
     attributes :id, :title, :thumbnail, :BGGrating
   end
+
+  class InvitesSerializer < ActiveModel::Serializer
+    attributes :id, :status, :created_at
+  
+    belongs_to :user
+    class UserSerializer < ActiveModel::Serializer
+      attributes :id, :username
+    end
+  end  
 end
