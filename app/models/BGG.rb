@@ -52,7 +52,8 @@ class BGG
         end
 
         output[:bggrating] = doc.css("average").attribute("value").to_s
-        output[:descrition] = doc.css("description").children.to_s
+        output[:description] = doc.css("description").children.to_s
+        output[:description] = output[:description].gsub('&amp;#10;&amp;#10;', '\n')
         output[:thumbnail] = doc.css("thumbnail").children.to_s
         output[:image] = doc.css("image").children.to_s
         output[:playtime] = doc.css("playingtime").attribute("value").to_s
@@ -82,7 +83,7 @@ class BGG
         if !Boardgame.find_by(BGGid: gameid) 
             gameinfo = BGG.getGame(gameid)
     
-            boardgame = Boardgame.create(BGGid: gameid, title: gameinfo[:name], description: gameinfo[:descrition], thumbnail: gameinfo[:thumbnail], image: gameinfo[:image], playtime: gameinfo[:playtime], minplayers: gameinfo[:minplayers], maxplayers: gameinfo[:maxplayers], BGGrating: gameinfo[:bggrating], BGGrank: gameinfo[:bggrank])
+            boardgame = Boardgame.create(BGGid: gameid, title: gameinfo[:name], description: gameinfo[:description], thumbnail: gameinfo[:thumbnail], image: gameinfo[:image], playtime: gameinfo[:playtime], minplayers: gameinfo[:minplayers], maxplayers: gameinfo[:maxplayers], BGGrating: gameinfo[:bggrating], BGGrank: gameinfo[:bggrank])
     
             gameinfo[:category].each do |category|
                 current = Category.find_or_create_by(category: category)

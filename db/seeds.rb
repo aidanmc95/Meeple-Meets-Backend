@@ -20,7 +20,7 @@ user4 = User.create(username:"aidanmc3", password:"asdf3")
 
 gameids = BGG.scraper("https://boardgamegeek.com/browse/boardgame")
 
-gameids = [174430, 161936, 224517, 167791, 182028]
+gameids = [174430, 161936, 224517, 167791, 182028, 233078, 220308, 187645, 12333, 193738, 169786, 115746, 162886, 84876, 120677, 173346, 124361, 28720]
 
 gameids.each do |gameid|
     BGG.addBoardgame(gameid)
@@ -46,8 +46,8 @@ MyGame.create(user: user2, boardgame: boardgame1)
 MyGame.create(user: user3, boardgame: boardgame1)
 MyGame.create(user: user4, boardgame: boardgame1)
 
-meet1 = Meet.create(user: user1, description: "description", location:"location", size: "size", name:"Just hangin' out", when:DateTime.strptime("2007-11-19T08:37", "%FT%R"))
-meet2 = Meet.create(user: user2, description: "description", location:"location", size: "size", name: "Meeting new bgg’ers", when:DateTime.strptime("2007-11-19T08:37", "%FT%R"))
+meet1 = Meet.create(user: user1, description: "description", location:"location", size: "10", name:"Just hangin' out", when:DateTime.strptime("2007-11-19T08:37", "%FT%R"))
+meet2 = Meet.create(user: user2, description: "description", location:"location", size: "11", name: "Meeting new bgg’ers", when:DateTime.strptime("2007-11-19T08:37", "%FT%R"))
 
 Invite.create(meet: meet1, user: user2, status: true)
 Invite.create(meet: meet1, user: user3, status: true)

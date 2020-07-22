@@ -3,6 +3,6 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :boardgames
   class BoardgameSerializer < ActiveModel::Serializer
-    attributes :id, :title, :thumbnail, :BGGrating
+    attributes :id, :title, :thumbnail, :BGGrating, :BGGrank
   end
 end

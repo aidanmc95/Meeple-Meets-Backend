@@ -6,7 +6,7 @@ class BoardgamesController < ApplicationController
     
     def show
         boardgame = Boardgame.find(params[:id])
-        render json: boardgame
+        render json: boardgame, serializer: BoardgameSerializer
     end
 
     def create

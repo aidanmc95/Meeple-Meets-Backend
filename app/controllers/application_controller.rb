@@ -4,8 +4,6 @@ class ApplicationController < ActionController::API
     end
     
     def active_user
-        # byebug
-        
         @user ||= User.find_by(id: user_id)
     end
     
