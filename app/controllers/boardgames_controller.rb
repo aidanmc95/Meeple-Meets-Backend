@@ -6,6 +6,7 @@ class BoardgamesController < ApplicationController
     
     def show
         boardgame = Boardgame.find(params[:id])
+        # byebug
         render json: boardgame, serializer: BoardgameSerializer
     end
 

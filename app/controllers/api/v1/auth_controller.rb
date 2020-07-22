@@ -14,7 +14,7 @@ class Api::V1::AuthController < ApplicationController
   def show
     user = User.find_by(id: user_id)
     if user && logged_in?
-      render json: {user: UserSerializer.new(user)}
+      render json: user
     else
       render json: {error: 'No user could be found'}, status: 401
     end
