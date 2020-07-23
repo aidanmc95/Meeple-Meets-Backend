@@ -6,7 +6,7 @@ class Api::V1::MeetsController < ApplicationController
     
     def show
         meet = Meet.find(params[:id])
-        render json: meet, include: ['user', 'boardgames', 'invites', 'invites.user']
+        render json: meet, include: ['user', 'brought_games', 'brought_games.boardgame', 'invites', 'invites.user']
     end
 
     def create

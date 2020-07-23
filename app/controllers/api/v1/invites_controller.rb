@@ -10,10 +10,19 @@ class Api::V1::InvitesController < ApplicationController
         end
     end
 
-    def edit
-        invite = Invite.find(params[:id])
-        invite.update(invite_params)
-        render json: invite
+    def update
+        user = User.find_by(id: user_id)
+        if user && logged_in?
+            invite = Invite.find(params[:id])
+            if(invite.meet.user == user)
+                invite.update(invite_params)
+                render json: invite, include: ['user']
+            else
+                render json: {error: 'Incorrect User.'}, status: 401
+            end
+        else
+            render json: {error: 'No user could be found. Log In to Join Meet.'}, status: 401
+        end
     end
 
     def destroy
