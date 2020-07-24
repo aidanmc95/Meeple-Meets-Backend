@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   # resources :game_categories
   # resources :game_mechanics
-  # resources :brought_games
   # resources :game_designers
   # resources :game_publishers
   resources :designers
@@ -16,7 +15,8 @@ Rails.application.routes.draw do
       resources :users, only: [:create, :show]
       resources :my_games, only: [:create, :destroy]
       resources :meets
-      resources :invites, only: [:create, :update, :destroy]
+      resources :invites, only: [:create, :update]
+      resources :brought_games, only: [:create, :destroy]
       post '/auth', to: 'auth#create'
       get '/current_user', to: 'auth#show'
     end

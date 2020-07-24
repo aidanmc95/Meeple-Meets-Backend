@@ -25,12 +25,6 @@ class Api::V1::InvitesController < ApplicationController
         end
     end
 
-    def destroy
-        invite = Invite.find(params[:id])
-        invite.destroy
-        render json: {info: "Deleted"}
-    end
-
     private
 
     def invite_params
