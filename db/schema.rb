@@ -31,12 +31,12 @@ ActiveRecord::Schema.define(version: 2020_07_17_192454) do
   end
 
   create_table "brought_games", force: :cascade do |t|
-    t.bigint "boardgame_id", null: false
+    t.bigint "my_game_id", null: false
     t.bigint "meet_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["boardgame_id"], name: "index_brought_games_on_boardgame_id"
     t.index ["meet_id"], name: "index_brought_games_on_meet_id"
+    t.index ["my_game_id"], name: "index_brought_games_on_my_game_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 2020_07_17_192454) do
   create_table "meets", force: :cascade do |t|
     t.string "description"
     t.string "location"
+    t.integer "zip"
     t.string "size"
     t.string "name"
     t.datetime "when"
@@ -157,12 +158,13 @@ ActiveRecord::Schema.define(version: 2020_07_17_192454) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
+    t.string "BGGusername"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "brought_games", "boardgames"
   add_foreign_key "brought_games", "meets"
+  add_foreign_key "brought_games", "my_games"
   add_foreign_key "game_categories", "boardgames"
   add_foreign_key "game_categories", "categories"
   add_foreign_key "game_designers", "boardgames"

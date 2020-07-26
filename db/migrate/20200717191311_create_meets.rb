@@ -3,6 +3,7 @@ class CreateMeets < ActiveRecord::Migration[6.0]
     create_table :meets do |t|
       t.string :description
       t.string :location
+      t.integer :zip
       t.string :size
       t.string :name
       t.datetime :when

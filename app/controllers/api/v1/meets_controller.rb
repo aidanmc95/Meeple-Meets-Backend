@@ -1,12 +1,12 @@
 class Api::V1::MeetsController < ApplicationController
     def index
         meets = Meet.all
-        render json: meets
+        render json: meets, each_serializer: SimpleMeetSerializer, include: ['user', 'invites']
     end
     
     def show
         meet = Meet.find(params[:id])
-        render json: meet, include: ['user', 'brought_games', 'brought_games.boardgame', 'invites', 'invites.user']
+        render json: meet, serializer: MeetSerializer, include: ['user', 'brought_games', 'brought_games.user', 'brought_games.boardgame', 'invites', 'invites.user']
     end
 
     def create

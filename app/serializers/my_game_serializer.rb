@@ -1,5 +1,5 @@
 class MyGameSerializer < ActiveModel::Serializer
-    attributes :id, :boardgame_id
+    attributes :id, :boardgame_id, :user_id
 
     belongs_to :boardgame
     class BoardgameSerializer < ActiveModel::Serializer

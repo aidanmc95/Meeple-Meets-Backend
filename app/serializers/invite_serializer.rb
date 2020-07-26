@@ -1,5 +1,5 @@
 class InviteSerializer < ActiveModel::Serializer
-  attributes :id, :status, :created_at
+  attributes :id, :user_id, :status, :created_at
 
   belongs_to :user
   belongs_to :meet

@@ -1,9 +1,8 @@
 class BroughtGameSerializer < ActiveModel::Serializer
     attributes :id
 
-    belongs_to :boardgame
-    class BoardgameSerializer < ActiveModel::Serializer
-        attributes :id, :title, :thumbnail, :BGGrating, :BGGrank
-    end
+    belongs_to :my_game
+    has_one :boardgame, serializer: SimpleBoardgameSerializer
+    has_one :user, serializer: SimpleUserSerializer
 end
   
