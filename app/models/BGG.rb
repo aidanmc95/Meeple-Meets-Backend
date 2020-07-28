@@ -53,7 +53,7 @@ class BGG
 
         output[:bggrating] = doc.css("average").attribute("value").to_s
         output[:description] = doc.css("description").children.to_s
-        output[:description] = output[:description].gsub('&amp;#10;&amp;#10;', '\n')
+        output[:description] = output[:description].gsub('&amp;#10;&amp;#10;', 'splithere')
         output[:thumbnail] = doc.css("thumbnail").children.to_s
         output[:image] = doc.css("image").children.to_s
         output[:playtime] = doc.css("playingtime").attribute("value").to_s

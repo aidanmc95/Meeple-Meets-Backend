@@ -159,6 +159,8 @@ ActiveRecord::Schema.define(version: 2020_07_17_192454) do
     t.string "username"
     t.string "password_digest"
     t.string "BGGusername"
+    t.string "address"
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -5,8 +5,21 @@ class Api::V1::MeetsController < ApplicationController
     end
     
     def show
+        user = User.find_by(id: user_id)
         meet = Meet.find(params[:id])
-        render json: meet, serializer: MeetSerializer, include: ['user', 'brought_games', 'brought_games.user', 'brought_games.boardgame', 'invites', 'invites.user']
+        if(meet)
+            if user && logged_in?
+                if(meet.user == user) 
+                    render json: meet, serializer: MeetSerializer, include: ['user', 'brought_games', 'brought_games.user', 'brought_games.boardgame', 'invites', 'invites.user']
+                else
+                    render json: meet, serializer: SimpleMeetSerializer, include: ['user', 'brought_games', 'brought_games.user', 'brought_games.boardgame', 'invites', 'invites.user']
+                end
+            else
+                render json: meet, serializer: SimpleMeetSerializer, include: ['user', 'brought_games', 'brought_games.user', 'brought_games.boardgame', 'invites', 'invites.user']
+            end
+        else
+            render json: {error: 'Meet Could Not be Found'}, status: 401
+        end
     end
 
     def create
@@ -52,6 +65,6 @@ class Api::V1::MeetsController < ApplicationController
     private
 
     def meet_params
-        params.require(:meet).permit(:user_id, :description, :location, :size, :name, :when)
+        params.require(:meet).permit(:user_id, :description, :location, :size, :name, :when, :zip)
     end
 end
