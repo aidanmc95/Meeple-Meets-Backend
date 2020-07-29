@@ -9,7 +9,7 @@ class Api::V1::MeetsController < ApplicationController
         meet = Meet.find(params[:id])
         if(meet)
             if user && logged_in?
-                if(meet.user == user) 
+                if(meet.user == user || meet.users.includes(user)) 
                     render json: meet, serializer: MeetSerializer, include: ['user', 'brought_games', 'brought_games.user', 'brought_games.boardgame', 'invites', 'invites.user']
                 else
                     render json: meet, serializer: SimpleMeetSerializer, include: ['user', 'brought_games', 'brought_games.user', 'brought_games.boardgame', 'invites', 'invites.user']

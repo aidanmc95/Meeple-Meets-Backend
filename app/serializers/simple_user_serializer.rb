@@ -1,5 +1,5 @@
 class SimpleUserSerializer < ActiveModel::Serializer
-  attributes :id, :username
+  attributes :id, :username, :about_me, :as_host, :created_at
 
   has_many :boardgames
   class BoardgameSerializer < ActiveModel::Serializer
