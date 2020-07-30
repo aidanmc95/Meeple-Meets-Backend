@@ -7,9 +7,10 @@ class Api::V1::MeetsController < ApplicationController
     def show
         user = User.find_by(id: user_id)
         meet = Meet.find(params[:id])
+        invite = meet.invites.find{|invite| ((invite.user == user) && invite.status)}
         if(meet)
             if user && logged_in?
-                if(meet.user == user || meet.users.includes(user)) 
+                if(meet.user == user || invite) 
                     render json: meet, serializer: MeetSerializer, include: ['user', 'brought_games', 'brought_games.user', 'brought_games.boardgame', 'invites', 'invites.user']
                 else
                     render json: meet, serializer: SimpleMeetSerializer, include: ['user', 'brought_games', 'brought_games.user', 'brought_games.boardgame', 'invites', 'invites.user']
