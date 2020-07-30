@@ -20,9 +20,9 @@ user4 = User.create(username:"aidanmc3", password:"asdf3", BGGusername:"aidanmc3
 
 gameids = BGG.scraper("https://boardgamegeek.com/browse/boardgame")
 
-gameids = [174430, 161936, 224517, 167791, 182028, 233078, 220308, 187645, 12333, 193738, 169786, 115746, 162886, 84876, 120677, 173346, 124361, 28720]
+# gameids = [174430, 161936, 224517, 167791, 182028, 233078, 220308, 187645, 12333, 193738, 169786, 115746, 162886, 84876, 120677, 173346, 124361, 28720]
 
-# gameids = [174430, 161936, 224517, 167791]
+gameids = [174430, 161936, 224517, 167791]
 
 gameids.each do |gameid|
     BGG.addBoardgame(gameid)
@@ -48,8 +48,8 @@ my_game5 = MyGame.create(user: user2, boardgame: boardgame1)
 my_game6 = MyGame.create(user: user3, boardgame: boardgame1)
 my_game7 = MyGame.create(user: user4, boardgame: boardgame1)
 
-meet1 = Meet.create(user: user1, description: "description", location:"1301 1st Ave, Seattle, WA 98101", size: "10", name:"Just hangin' out", when:DateTime.strptime("2020-07-30T08:37", "%FT%R"), zip:98101)
-meet2 = Meet.create(user: user2, description: "description", location:"1301 1st Ave, Seattle, WA 98101", size: "11", name: "Meeting new bgg’ers", when:DateTime.strptime("2020-07-30T08:37", "%FT%R"), zip:98101)
+meet1 = Meet.create(user: user1, description: "description", location:"1301 1st Ave, Seattle, WA 98101", size: 10, name:"Just hangin' out", when:DateTime.strptime("2020-07-30T08:37", "%FT%R"), zip:98101)
+meet2 = Meet.create(user: user2, description: "description", location:"1301 1st Ave, Seattle, WA 98101", size: 11, name: "Meeting new bgg’ers", when:DateTime.strptime("2020-07-30T08:37", "%FT%R"), zip:98101)
 
 Invite.create(meet: meet1, user: user2, status: true)
 Invite.create(meet: meet1, user: user3, status: true)

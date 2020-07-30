@@ -11,7 +11,7 @@ class Api::V1::BroughtGamesController < ApplicationController
                     if brought_game.valid?
                         render json: brought_game
                     else
-                        render json: {error: brought_game.error }, status: 401
+                        render json: {error: brought_game.errors.full_messages }, status: 401
                     end
                 else
                     render json: {error: 'Not Part of the Meet'}, status: 401

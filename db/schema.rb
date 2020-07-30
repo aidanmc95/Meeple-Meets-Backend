@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 2020_07_17_192454) do
     t.string "description"
     t.string "location"
     t.integer "zip"
-    t.string "size"
+    t.integer "size"
     t.string "name"
     t.datetime "when"
     t.bigint "user_id", null: false

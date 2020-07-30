@@ -7,4 +7,8 @@ class Meet < ApplicationRecord
     has_many :brought_games, dependent: :destroy
     has_many :my_games, through: :brought_games
     has_many :boardgames, through: :my_games
+
+    validates :location, presence: true
+    validates :zip, presence: true
+    validates :size, presence: true
 end

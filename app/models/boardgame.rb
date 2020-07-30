@@ -19,4 +19,6 @@ class Boardgame < ApplicationRecord
     accepts_nested_attributes_for :game_mechanics
     accepts_nested_attributes_for :game_designers
     accepts_nested_attributes_for :game_publishers
+
+    validates :BGGid, presence: true, uniqueness: true
 end
