@@ -7,8 +7,9 @@ class Api::V1::BroughtGamesController < ApplicationController
             if user && logged_in?
                 my_game = user.my_games.select {|my_game| my_game.boardgame_id == params[:boardgame_id]}[0]
                 if((meet.user == user || invite) && my_game) 
-                    brought_game = BroughtGame.create(my_game: my_game, meet: meet)
+                    brought_game = BroughtGame.new(my_game: my_game, meet: meet)
                     if brought_game.valid?
+                        brought_game.save
                         render json: brought_game
                     else
                         render json: {error: brought_game.errors.full_messages }, status: 401

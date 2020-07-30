@@ -11,7 +11,6 @@ Mechanic.destroy_all
 Designer.destroy_all
 Publisher.destroy_all
 Boardgame.destroy_all
-MyGame.destroy_all
 
 user1 = User.create(username:"aidanmc95", password:"asdf", BGGusername:"aidanmc95", address1:"1301 1st Ave, Seattle, WA", address2:"Apt 1", zip:98101, email:"aidanmc95@gmail.com", about_me:"My name is Leela. My partner and I love to meet board game people! If you’re in the area and we’re hosting something, please do request an invite and if we have the space, we’d have to have you. Let’s make new friends as we destroy each other in a heavy strategy game.", as_host:"We live in a small apartment, but we’re able to reserve the multipurpose room a month in advance. Parking here can be pretty difficult, so if you’re planning on dropping by, please give yourself time to search. And don’t park anywhere where you’ll be towed!")
 user2 = User.create(username:"aidanmc1", password:"asdf1", BGGusername:"aidanmc1", address1:"1301 1st Ave, Seattle, WA 98101", address2:"Apt 1", zip:98101, email:"aidanmc1@gmail.com", about_me:"My name is Leela. My partner and I love to meet board game people! If you’re in the area and we’re hosting something, please do request an invite and if we have the space, we’d have to have you. Let’s make new friends as we destroy each other in a heavy strategy game.", as_host:"We live in a small apartment, but we’re able to reserve the multipurpose room a month in advance. Parking here can be pretty difficult, so if you’re planning on dropping by, please give yourself time to search. And don’t park anywhere where you’ll be towed!")
@@ -22,7 +21,7 @@ gameids = BGG.scraper("https://boardgamegeek.com/browse/boardgame")
 
 # gameids = [174430, 161936, 224517, 167791, 182028, 233078, 220308, 187645, 12333, 193738, 169786, 115746, 162886, 84876, 120677, 173346, 124361, 28720]
 
-gameids = [174430, 161936, 224517, 167791]
+# gameids = [174430, 161936, 224517, 167791]
 
 gameids.each do |gameid|
     BGG.addBoardgame(gameid)

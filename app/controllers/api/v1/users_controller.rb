@@ -3,9 +3,9 @@ class Api::V1::UsersController < ApplicationController
         user = User.find(params[:id])
         if user
             render json: user, serializer: SimpleUserSerializer
-          else
+        else
             render json: {error: 'That user could not be found'}, status: 401
-          end
+        end
     end
 
     def create
