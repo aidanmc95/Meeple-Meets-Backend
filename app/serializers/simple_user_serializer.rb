@@ -7,4 +7,8 @@ class SimpleUserSerializer < ActiveModel::Serializer
   class BoardgameSerializer < ActiveModel::Serializer
     attributes :id, :title, :thumbnail, :BGGrating, :BGGrank
   end
+
+  class MeetSerializer < ActiveModel::Serializer
+    attributes :id, :description, :size, :name, :when, :zip
+  end
 end
